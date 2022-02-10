@@ -1,0 +1,5 @@
+# Read Data
+data = []
+with open(r'.\input.txt', 'r') as file:
+    for line in file:
+        data.append(line.rstrip())
