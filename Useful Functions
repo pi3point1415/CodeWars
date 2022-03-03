@@ -1,5 +1,35 @@
-# Read Data
+# Read input file
 data = []
-with open(r'.\input.txt', 'r') as file:
+with open('input.txt', 'r') as file:
     for line in file:
         data.append(line.rstrip())
+
+# Fancy list notation thing
+var = [1, 2, 3]
+var = [i ** 2 for i in var]
+print(var)
+
+# Print a list
+var = [1, 2, 3]
+print(*var, sep=',')
+
+# Print a 2d list
+var = [[1, 2, 3],
+       [4, 5, 6],
+       [7, 8, 9]]
+[print(*i, sep=' ') for i in var]
+
+
+# Paint bucket
+def fill(grid, x, y, new, start=None):
+    if start is None:
+        start = grid[y][x]
+    if grid[y][x] == start:
+        grid[y][x] = '_'
+        for i in ((-1, 0), (1, 0), (0, -1), (0, 1)):
+            if x + i[0] < 0 or y + i[1] < 0 or x + i[0] >= len(grid[0]) or y + i[1] >= len(grid):
+                continue
+            grid = fill(grid, x + i[0], y + i[1], new, start=start)
+        grid[y][x] = new
+
+    return grid
